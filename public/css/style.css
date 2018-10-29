@@ -1,0 +1,230 @@
+.s1{
+    font-size:12px;
+}
+
+
+#bloc1{
+    position: relative;
+}
+#bloc2{
+    display:none;
+    position:absolute;
+    right:0%;
+    top:30%;
+}
+/*color*/
+.orange{
+    color:#DB7E33;
+}
+
+.b-orange{
+    background-color: #DB7E33;
+}
+
+.blue{
+    color:#239CC9;
+}
+
+.b-blue{
+    background-color: #239CC9;
+}
+
+.red{
+    color:#A94E60;
+}
+
+.b-red{
+    background-color: #A94E60;
+}
+
+.purple{
+    color:#9957D7;
+}
+
+.b-purple{
+    background-color: #9957D7;
+}
+
+.turq{
+    color:#3998AB;
+}
+
+.b-turq{
+    background-color: #3998AB;
+}
+
+.height1{
+    height:100px;
+}
+
+
+#slider{
+    background-attachment: fixed no-repeat;
+    position: fixed;
+}
+
+.jumbotron {
+    background:transparent;
+    color:#fff;
+    padding:0;
+    margin-bottom:0;
+    min-height:500px;
+}
+
+.jumbotron .container {
+    position:relative;
+    top:0;
+}
+
+.jumbotron .container.scale-in{
+	opacity:0;
+	-webkit-transform: scale(0.5);
+	-moz-transform: scale(0.5);
+	-ms-transform: scale(0.5);
+	transform:scale(0.5);
+}
+
+.jumbotron .container.scale-in.in{
+	opacity:1;
+	-webkit-transform: scale(1);
+	-moz-transform: scale(1);
+	-ms-transform: scale(1);
+	transform:scale(1);
+	-webkit-transition: -webkit-transform .6s cubic-bezier(.17,.89,.67,1.57), opacity .6s ease-out;
+	transition: transform .6s cubic-bezier(.17,.89,.67,1.57), opacity .6s ease-out;
+}
+
+.jumbotron .logo{
+    margin-top:250px;
+}
+.jumbotron .message-box{
+    margin:450px auto 0;
+	background:transparent;
+    padding:20px 0;
+}
+
+.jumbotron .first-line{
+    text-align:center;
+    opacity:0.8;
+}
+.jumbotron .first-line h1{
+    border:2px solid #343A40;
+
+}
+
+.jumbotron .second-line{
+    text-align:center;
+    overflow:hidden;
+    border:none;
+    box-shadow:none;
+    background:transparent;
+    margin:0;
+    padding:0;
+}
+
+.jumbotron .first-line h1{
+    display:inline-block;
+    margin:0;
+    padding:0;
+    font-weight:400;
+    line-height:48px;
+    letter-spacing:0.02em;
+    word-spacing:0.05em;
+}
+
+.jumbotron .second-line p{
+    margin:0;
+    padding:0px;
+    font-size:45px;
+    line-height:55px;
+    font-weight:300;
+    letter-spacing:0.02em;
+    word-spacing:0.02em;
+    text-transform:uppercase;
+}
+
+.jumbotron .home-slider .slides li {
+    opacity:0;
+    -webkit-transition:opacity 0.4s ease-out;
+    transition:opacity 0.4s ease-out;
+}
+
+.no-csstransitions .jumbotron .home-slider .slides li {
+    opacity:1;
+}
+
+.jumbotron .home-slider .slides li.flex-active-slide,
+.jumbotron .home-slider .slides li.clone {
+    opacity:1;
+}
+
+#service{
+    position: relative;
+}
+#harrow{
+    position: absolute;
+    right:50%;
+    left:50%;
+    bottom:0;
+    cursor:pointer;
+}
+
+#service .container h1,#portfolio .container h1{
+    font-size:42px;
+    line-height:55px;
+    font-weight:300;
+}
+
+.section-header{
+    margin-top:120px;
+    margin-bottom:60px;
+    text-align:center;
+    position:relative;
+    border-top:1px dotted #5AA9CE;
+    border-bottom:1px dotted #5AA9CE;
+}
+
+.section-icon{
+    display:inline-block;
+    position:absolute;
+    top:-320px;
+    left:50%;
+    margin-left:-40px;
+    background-color:#5AA9CE;
+    width:80px;
+    height:80px;
+    text-align:center;
+    border-radius:50%;
+    z-index:1;
+    overflow:hidden;
+}
+#t{
+    height:1px;
+}
+.section-icon [class*=fa]{
+    font-size:50px;
+    line-height:80px;
+    color:#fff;
+}
+.section-title{
+    display:inline-block;
+    position:relative;
+    top:-35px;
+    margin:0px;
+    padding:0 40px;
+    background:#fff;
+    font-size:42px;
+    line-height:64px;
+    font-weight:100;
+    text-align:center;
+	text-transform:uppercase;
+    color:#7c7c7c;
+}
+
+.section-description {
+    margin-top:-25px;
+}
+
+.padding-bottom {
+    padding:0 0 5px;
+}

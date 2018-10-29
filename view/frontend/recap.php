@@ -1,0 +1,1 @@
+http://localhost/IBB1/display_article_view.php
