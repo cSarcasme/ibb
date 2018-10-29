@@ -18,7 +18,14 @@ class OperationManager extends Manager
 				return $data;
 			}
 
-    }
+	}
+	
+	public function  warehouseId($mot){
+		$db=$this -> dbConnect();
+
+		$req =$db -> query("SELECT warehouse.warehouse_id FROM warehouse WHERE warehouse_name = ".$mot);
+
+	}
      
   
 }
