@@ -48,9 +48,9 @@ $('#client').autocomplete({
               
           },
           
-          success : function(donnee){
-              reponse(donnee);
-                  
+          success : function(data){
+              reponse(data);
+                  console.log(data)
           }
       });
   },

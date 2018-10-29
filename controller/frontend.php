@@ -55,6 +55,7 @@ require_once('model/OperationManager.php');
             $recup=$OperationManager-> search_stat0($term0);
             $array=[];
             while($data=$recup->fetch()){
+                array_push($array,$data['warehouse_id']);
                 array_push($array,$data['warehouse_name']);
             }
         
