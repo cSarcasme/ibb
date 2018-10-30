@@ -42,26 +42,72 @@ require_once('model/OperationManager.php');
     class PageOperation{
         /* * page menu view * */
         public function operation(){
-            
-            
-            
-
-            require('view/frontend/operation.php');
-        }
-
-        public function jsonStat0($term0){
-               
             $OperationManager= new OperationManager;
-            $recup=$OperationManager-> search_stat0($term0);
+            $recup1=$OperationManager-> petiteEnseigne();
+            
+            
+
+                require('view/frontend/operation.php');
+            }
+
+            public function jsonStat0($term0){
+                
+                $OperationManager= new OperationManager;
+                $recup=$OperationManager-> search_stat0($term0);
+                $array=[];
+                while($data=$recup->fetch()){
+                    array_push($array,$data['warehouse_name']);
+                }
+            
+                echo json_encode($array);
+                
+            }
+        
+
+        public function jsonStat1($term1){
+                
+            $OperationManager= new OperationManager;
+            $recup=$OperationManager-> search_stat1($term1);
             $array=[];
             while($data=$recup->fetch()){
-                array_push($array,$data['warehouse_name']);
+                array_push($array,$data['name']);
             }
         
             echo json_encode($array);
             
         }
+    
+
+        public function jsonStat2($term2){
+                    
+            $OperationManager= new OperationManager;
+            $recup=$OperationManager-> search_stat2($term2);
+            $array=[];
+            while($data=$recup->fetch()){
+                array_push($array,$data['name']);
+            }
+        
+            echo json_encode($array);
+            
+        }
+
+
+        public function jsonStat3($term3){
+                        
+            $OperationManager= new OperationManager;
+            $recup=$OperationManager-> search_stat3($term3);
+            $array=[];
+            while($data=$recup->fetch()){
+                array_push($array,$data['stat3_name']);
+            }
+
+            echo json_encode($array);
+            
+        }
+
+
     }
+
 
     class PageArticle{
         /* * page article view * */

@@ -29,10 +29,17 @@
     clientName();  stat1();   stat2();   stat3(); 
     ?>
    </fieldset> 
-   <form action="index.php" method="post">
    
+                
+                  
    <SELECT type="text" name="enseigne2" required />
-            <OPTION></OPTION>
+      <?php 
+                
+        foreach ($recup1 as $row){
+          echo '<OPTION>'. $row['name'] . '</OPTION>';
+        }
+                
+      ?>      
             
            </SELECT>
    
@@ -69,10 +76,7 @@
 <?php
     function clientName()
     {
-?>
-              
-<h3> Nom client</h3>        
-<legend> client</legend>      
+?>     
                       
 <form method="GET">
   <input type="text" placeholder="client" id="client" class="ui-autocomplete-input" autocomplete="off" />
@@ -80,194 +84,46 @@
 </form>
 <?php
      }
+?>
 
-
-function stat1()
-{
-          ?>
-          <h3> Stat1</h3>        
-            <legend> stat1</legend>
-        <p></p>       
-        </p><p>
-        <form action="index.php" method="GET">
-              <input type="text" placeholder="stat1" id="stat1" class="ui-autocomplete-input" autocomplete="off" />
-              <script language="JavaScript" type="text/javascript">
-              $(document).ready(function($){
-
-                  $('#stat1').autocomplete({
-                      source: function(request, reponse){
-                        $.ajax({
-                          dataType: "json",
-                          type :'GET',
-                          url:"index.php?termA="+$('#stat1').val(),
-                          data: {
-                          maxRows : 5 // on donne la chaîne de caractère tapée dans le champ de recherche
-                          },
-                        
-                          success: function(data) { 
-                          
-                                reponse($.map(data, function(objet){
-                                  
-                                  return objet.value  ; // on retourne cette forme de suggestion
-                                }
-                          ))},
-
-                          error: function(data) {
-                                successmessage = 'Error';
-                                console.log(successmessage);
-                            }
-                    
-                          });
-                        },  
-                  minLength: 3,
-                  select: function(event,ui){
-                
-                              alert(ui.item.value);
-                  var clientName1 = ui.item.value;
-                  if(clientName1 != '') {
-                  location.href= 'index.php?clientName1=' + clientName1;
-                  }},
-                      
-          });
-        });
-
-        </script>
-
-        </form>
 <?php
-}
-
-
-function stat2()
-{
-                ?>
-              <h3> Stat2</h3>        
-                  <legend> stat2</legend>
-              <p></p>       
-              </p><p>
-              <form action="index.php" method="GET">
-                    <input type="text" placeholder="stat2" id="stat2" class="ui-autocomplete-input" autocomplete="off" />
-                    <script language="JavaScript" type="text/javascript">
-                    $(document).ready(function($){
-
-                        $('#stat2').autocomplete({
-                            source: function(request, reponse){
-                              $.ajax({
-                                dataType: "json",
-                                type :'GET',
-                                url:"index.php?term2="+$('#stat2').val(),
-                                data: {
-                                maxRows : 5 // on donne la chaîne de caractère tapée dans le champ de recherche
-                                },
-                              
-                                success: function(data) { 
-                                
-                                      reponse($.map(data, function(objet){
-                                        
-                                        return objet.value  ; // on retourne cette forme de suggestion
-                                      }
-                                ))},
-
-                                error: function(data) {
-                                      successmessage = 'Error';
-                                      console.log(successmessage);
-                                  }
-                          
-                                });
-                              },  
-                        minLength: 3,
-                        select: function(event,ui){
+    function stat1()
+    {
+?>     
                       
-                                    alert(ui.item.value);
-                        var clientName2 = ui.item.value;
-                        if(clientName2 != '') {
-                        location.href= 'index.php?clientName2=' + clientName2;
-                        }},
+<form method="GET">
+  <input type="text" placeholder="stat1" id="stat1" class="ui-autocomplete-input" autocomplete="off" />
                             
-                });
-              });
-
-              </script>
-
-              </form>
-<?php 
-}
-
-
-function stat3()
-{
-?>
-         
-            <h3> Stat3</h3>        
-                <legend> stat3</legend>
-            <p></p>       
-            </p><p>
-            <form action="index.php" method="GET">
-                  <input type="text" placeholder="stat3" id="stat3" class="ui-autocomplete-input" autocomplete="off" />
-                  <script language="JavaScript" type="text/javascript">
-                  $(document).ready(function($){
-
-                      $('#stat3').autocomplete({
-                          source: function(request, reponse){
-                            $.ajax({
-                              dataType: "json",
-                              type :'GET',
-                              url:"index.php?term3="+$('#stat3').val(),
-                              data: {
-                              maxRows : 5 // on donne la chaîne de caractère tapée dans le champ de recherche
-                              },
+</form>
+<?php
+     }
+?> 
+<?php
+    function stat2()
+    {
+?>     
+                      
+<form method="GET">
+  <input type="text" placeholder="stat2" id="stat2" class="ui-autocomplete-input" autocomplete="off" />
                             
-                              success: function(data) { 
-                              
-                                    reponse($.map(data, function(objet){
-                                      
-                                      return objet.value  ; // on retourne cette forme de suggestion
-                                    }
-                              ))},
-
-                              error: function(data) {
-                                    successmessage = 'Error';
-                                    console.log(successmessage);
-                                }
-                        
-                              });
-                            },  
-                      minLength: 3,
-                      select: function(event,ui){
-                    
-                        
-                      var clientName3 = ui.item.value;
-                      if(clientName3 != '') {
-                      location.href= 'index.php?clientName3=' + clientName3;
-                      }},
-                          
-              });
-            });
-
-            </script>
-            </form>    
-
-            
-            <?php
-}
-function dbConnect2()
-{
-    try
-	{
-    $bdd = new PDO('mysql:host=localhost;dbname=ibb', 'root', '');
-      return $bdd;
-	}
-	catch(Exception $e)
-	{
-        die('Erreur : '.$e->getMessage());
-	}
-}
-
-
+</form>
+<?php
+     }
 ?>
-   
+<?php
+    function stat3()
+    {
+?>     
+                      
+<form method="GET">
+  <input type="text" placeholder="stat3" id="stat3" class="ui-autocomplete-input" autocomplete="off" />
+                            
+</form>
+<?php
+     }
+?>
   </body>
-</htlm>
+
 
 
 

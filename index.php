@@ -52,6 +52,26 @@ try{
 					$client -> jsonStat0($_GET['term'] );
 				}
 			}
+			elseif ($_GET['page'] == 'jsonstat1') {
+				if(isset($_GET['term'])){
+					$stat1 = new PageOperation;
+					$stat1 -> jsonStat1($_GET['term'] );
+				}
+			}
+			elseif ($_GET['page'] == 'jsonstat2') {
+				if(isset($_GET['term'])){
+					$stat2 = new PageOperation;
+					$stat2 -> jsonStat2($_GET['term'] );
+				}
+			}
+			elseif ($_GET['page'] == 'jsonstat3') {
+				if(isset($_GET['term'])){
+					$stat3 = new PageOperation;
+					$stat3 -> jsonStat3($_GET['term'] );
+				}
+			}
+			
+					
 		/* search page exist */
 		elseif(in_array($_GET['page'],$pages)){
 			$page=$_GET['page'];

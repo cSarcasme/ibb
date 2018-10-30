@@ -41,6 +41,12 @@
     <script src="public/js/bootstrap.js"></script>
     <script src="public/js/script.js"></script>
     <script src="public/js/AutocompleteClient.js"></script>
+    <script src="public/js/AutocompleteStat1.js"></script>
+    <script src="public/js/AutocompleteStat2.js"></script>
+    <script src="public/js/AutocompleteStat3.js"></script>
+
+
+
    
 
 
