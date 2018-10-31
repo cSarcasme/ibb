@@ -1,5 +1,6 @@
 <?php 
 require_once("model/manager.php");
+
 class OperationManager extends Manager
 {
     
@@ -13,16 +14,14 @@ class OperationManager extends Manager
 			/* retrieve the search term that autocomplete sends */
 			//$a_json = array();
 			//$a_json_row = array();
-			$data = $db->query("SELECT * FROM warehouse as w WHERE  warehouse_name LIKE '%$term0%' ");
+			$data = $db->query("SELECT warehouse_name FROM warehouse as w WHERE  warehouse_name LIKE '%$term0%' ");
 			if(!empty($data)){
 				return $data;
 			}
 
 	}
 	
-	public function  warehouseId($mot){
-		$db=$this -> dbConnect();
-
+	public function  warehouseId($client){
 		$db=$this -> dbConnect();
 		$va=0;
 		$req =$db -> prepare("SELECT warehouse_id FROM warehouse WHERE warehouse_name  = ? ");
@@ -30,8 +29,8 @@ class OperationManager extends Manager
 		$result =$req -> fetch() ;
 		return array($result[0],$va);
 
-	}
-  
+			}
+
 	public function search_stat1($term1)
 	{
 		
@@ -105,6 +104,7 @@ class OperationManager extends Manager
 		return $req;
 	}
 
+	
 	public function  ClientOp($opId,$clientId,$numb){
 		
 		$db=$this -> dbConnect();
@@ -116,7 +116,6 @@ class OperationManager extends Manager
 		$affectedLines=$req ->execute(array($opId,$clientId,$numb));
 		return $affectedLines;
 	}
-
 	public function  GetOpe($opName,$opStartDate,$opEndDate,$opReqDate,$opcommitStartDate,$opCommitEndDate,$prio){
 		$db=$this -> dbConnect();
 		$op_etat='non validé';
@@ -127,11 +126,16 @@ class OperationManager extends Manager
 		operation_end_date,
 		operation_available_request_date,
 		operation_commitment_start_date,
-		operation_commitment_end_date,prio,operation_creation_date,operation_modification_date) 
+		operation_commitment_end_date,
+		prio,
+		operation_creation_date,
+		operation_modification_date) 
 		VALUES(?,?,?,?,?,?,?,?,NOW(),NOW())");
 		$affectedLines=$req ->execute(array($opName,$op_etat,$opStartDate,$opEndDate,$opReqDate,$opcommitStartDate,$opCommitEndDate,$prio));
+		
+		
 		return $affectedLines;
 	}
 
 }
-
+		
