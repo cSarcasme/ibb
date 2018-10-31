@@ -2,6 +2,7 @@
 
 
 require('controller/frontend.php');
+
 try{
 	
 	$pages = scandir('view/frontend/');
@@ -72,6 +73,9 @@ try{
 			}
 			
 					
+				
+			
+	
 		/* search page exist */
 		elseif(in_array($_GET['page'],$pages)){
 			$page=$_GET['page'];

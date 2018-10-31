@@ -1,4 +1,5 @@
 
+
 <!--page operation-->
 <?php $title = "Operation"?>
 
@@ -10,123 +11,152 @@
 ?>
 
 
-                <nav>
-                    <ul>
-                        <li><a href="index.php?page=menu">Menu</a></li>
-                        <li><a href="display_add_operation.php"> Opération</a></li>
-                        <li><a href="display_search_promo.php">Réservation</a></li>
-                        <li><a href="display_commande_choice.php">Commande</a></li>
-                    </ul>
-                </nav>
-            </header>
+
+
   
-	<body>
-		<h1> Nouvelle opération</h1>
-    
-  <fieldset>
-    <legend>Entrer les informations de l'opération</legend><fieldset>  
-    <?php
-    clientName();  stat1();   stat2();   stat3(); 
-    ?>
-   </fieldset> 
-   
-                
-                  
-   <SELECT type="text" name="enseigne2" required />
-      <?php 
-                
-        foreach ($recup1 as $row){
-          echo '<OPTION>'. $row['name'] . '</OPTION>';
-        }
-                
-      ?>      
-            
-           </SELECT>
-   
-    <p><label for="operation_name">Nom ou de l'opération :</label><br>
-    <input type="text" name="operation_name" /></p>
 
-   
-    <p><label for="operation_month">Mois de l'opération :</label><br>
-    <input type="text" name="operation_month" /></p>
-   
-    <p><label for="operation_start_date">Date de début de l'opération (aaaa-mm-jj) :</label><br>
-    <input type="Date" name="operation_start_date" /></p>
-    
-    <p><label for="operation_end_date">Date de fin de l'opération (aaaa-mm-jj) :</label><br>
-    <input type="date" name="operation_end_date" /></p>
 
-    <p><label for="operation_available_request_date">Date de disponibilité demandée (aaaa-mm-jj):</label><br>
-    <input type="date" name="operation_available_request_date" /></p>
-
-    <p><label for="operation_commitment_start_date">Date de début d'engagement (aaaa-mm-jj):</label><br>
-    <input type="date" name="operation_commitment_start_date" /></p>
-
-    <p><label for="operation_commitment_end_date">Date de fin d'engagement(aaaa-mm-jj) :</label><br>
-    <input type="date" name="operation_commitment_end_date" /></p>
-    
-               
-  <p>  Prioritaire
-<input type="radio" name="prio" value="oui" id="oui" checked="checked" /> <label for="oui">Oui</label>
-<input type="radio" name="prio" value="non" id="non" /> <label for="non">Non</label>   </p>               
-  <p></p>
-<input type="submit" name="Ok" value="Ajouter une nouvelle opération" >
-</form>
-
-<?php
-    function clientName()
-    {
-?>     
+<section id="operation">
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-10">
+                <h1 class="text-white">Créer une nouvellle opération</h1>
+                <?php
+                  if(isset($_POST['submit'])){
+                    $opName=htmlspecialchars($_POST['operation_name']);
+                    $opStartDate=htmlspecialchars($_POST['operation_start_date']);
+                    $opEndDate=htmlspecialchars($_POST['operation_end_date']);
+                    $opReqDate=htmlspecialchars($_POST['operation_available_request_date']);
+                    $opcommitStartDate=htmlspecialchars($_POST['operation_commitment_start_date']);
+                    $opCommitEndDate=htmlspecialchars($_POST['operation_commitment_end_date']);
+                    $prio=htmlspecialchars($_POST['prio']);
+                    
+                   
+                    //Client_Op($opId,$clientId,$numb);
+                    Get_Op($opName,$opStartDate,$opEndDate,$opReqDate,$opcommitStartDate,$opCommitEndDate,$prio);
                       
-<form method="GET">
-  <input type="text" placeholder="client" id="client" class="ui-autocomplete-input" autocomplete="off" />
-                            
-</form>
-<?php
-     }
-?>
+                  }
+                ?>
+                <p class="text-white">Entrer les informations de l'opération</p>
 
-<?php
-    function stat1()
-    {
-?>     
-                      
-<form method="GET">
-  <input type="text" placeholder="stat1" id="stat1" class="ui-autocomplete-input" autocomplete="off" />
-                            
-</form>
-<?php
-     }
-?> 
-<?php
-    function stat2()
-    {
-?>     
-                      
-<form method="GET">
-  <input type="text" placeholder="stat2" id="stat2" class="ui-autocomplete-input" autocomplete="off" />
-                            
-</form>
-<?php
-     }
-?>
-<?php
-    function stat3()
-    {
-?>     
-                      
-<form method="GET">
-  <input type="text" placeholder="stat3" id="stat3" class="ui-autocomplete-input" autocomplete="off" />
-                            
-</form>
-<?php
-     }
-?>
-  </body>
+                <form method="post">
+                    <div class="form-row">
+                        <div class="form-group col-2">
+                            <input type="text" class="form-control" placeholder="Client" name="client" id="client"  />
+                        </div>
+                        <div class="form-group col-2">
+                        <input type="text" class="form-control" placeholder="Stat1" name="stat1" id="stat1"  />
 
-
-
-
+                        </div>
+                        <div class="form-group col-2">
+                            <input type="text" class="form-control" placeholder="Stat2" name="stat2" id="stat2"  />
+                        </div>
+                        <div class="form-group col-2">
+                            <input type="text" class="form-control" placeholder="Stat3" name="stat3" id="stat3"  />
+                        </div>
+                        <div class="form-group col-2">
+                            <select  class="form-control" type="text" name="enseigne2" required>
+                            <option>petite enseigne</option>
+                            <?php 
+                                      
+                              foreach ($recup1 as $row){
+                                echo '<OPTION>'. $row['name'] . '</OPTION>';
+                              }
+                                      
+                            ?>               
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-3">
+                            <p class="text-white"><label for="operation_name">Rentrez un nom d' opération*</label><br>
+                            <input type="text" id="operation_name" class="form-control" name="operation_name" placeholder="Nom de l'opération" /></p>
+                        </div>
+                    </div>
+                    <div class="form-row mb-2">
+                        <div class="form-group col-3">
+                            <div class="input-group date" id="datetimepicker" data-target-input="nearest">
+                                <input type="text" placeholder="Date de début de l'opération" name="operation_start_date"  class="form-control datepicker" data-target="#datetimepicker"/>
+                                <div class="input-group-append" data-target="#datetimepicker" data-toggle="datetimepicker">
+                                    <div class="input-group-text"><i class="far fa-calendar-alt"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row mb-2">
+                        <div class="form-group col-3">
+                            <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
+                                <input type="text" placeholder="Date de fin de l'opération" name="operation_end_date" class="form-control datepicker" data-target="#datetimepicker1"/>
+                                <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
+                                    <div class="input-group-text"><i class="far fa-calendar-alt"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row mb-2">
+                        <div class="form-group col-3">
+                            <div class="input-group date" id="datetimepicker2" data-target-input="nearest">
+                                <input type="text" placeholder="Date de disponibilité demandée" name="operation_available_request_date"  class="form-control datepicker" data-target="#datetimepicker2"/>
+                                <div class="input-group-append" data-target="#datetimepicker2" data-toggle="datetimepicker">
+                                    <div class="input-group-text"><i class="far fa-calendar-alt"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row mb-2">
+                        <div class="form-group col-3">
+                            <div class="input-group date" id="datetimepicker3" data-target-input="nearest">
+                                <input type="text" placeholder="Date de début d'engagement" name="operation_commitment_start_date"  class="form-control datepicker" data-target="#datetimepicker3"/>
+                                <div class="input-group-append" data-target="#datetimepicker3" data-toggle="datetimepicker">
+                                    <div class="input-group-text"><i class="far fa-calendar-alt"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row mb-2">
+                        <div class="form-group col-3">
+                            <div class="input-group date" id="datetimepicker4" data-target-input="nearest">
+                                <input type="text" placeholder="Date de fin d'engagement" name="operation_commitment_end_date"  class="form-control datepicker" data-target="#datetimepicker4"/>
+                                <div class="input-group-append" data-target="#datetimepicker4" data-toggle="datetimepicker">
+                                    <div class="input-group-text"><i class="far fa-calendar-alt"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row mb-2">
+                        <div class="form-group col-1">
+                            <p class="text-white">Prioritaire:</p>
+                        </div>
+                        <div class="form-group col-1">
+                            <div class="form-check">
+                                <input class="form-check-input" name="prio" value="oui" type="checkbox" id="gridCheck">
+                                <label class="form-check-label  text-white" for="gridCheck">
+                                  Oui
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group col-1">
+                            <div class="form-check">
+                                <input class="form-check-input" name="prio" value="non" type="checkbox" id="gridCheck">
+                                <label class="form-check-label text-white" for="gridCheck">
+                                   Non
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3 text-center">
+                            <button type=submit name=submit class=" btn btn-block btn-md btn-success">Valider</button>
+                        </div>
+                    </div>  
+                  </div>
+                  </form>
+            </div>            
+        </div>
+    </div>
+</section>
+     
+ 
 
 
 <?php $content = ob_get_clean(); ?>

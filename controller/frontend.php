@@ -44,10 +44,34 @@ require_once('model/OperationManager.php');
         public function operation(){
             $OperationManager= new OperationManager;
             $recup1=$OperationManager-> petiteEnseigne();
-            
+
+            function Client_Op($opId,$clientId,$numb){
+                
+                $OperationManager= new OperationManager;
+                $affectedLines=$OperationManager-> ClientOp($opId,$clientId,$numb);
+                if($affectedLines==false){
+                    throw new Exception("impossible d'envoyer les données");
+                }
+     
+            } 
+
+            function Get_Op($opName,$opStartDate,$opEndDate,$opReqDate,$opcommitStartDate,$opCommitEndDate,$prio){
+                $OperationManager= new OperationManager;
+                $affectedLines =$OperationManager-> GetOpe($opName,$opStartDate,$opEndDate,$opReqDate,$opcommitStartDate,$opCommitEndDate,$prio);
+                if($affectedLines==false){
+                    throw new Exception("impossible d'envoyer les données");
+                }
+            }
             
 
                 require('view/frontend/operation.php');
+            }
+            public function Get_Op($opName,$opStartDate,$opEndDate,$opReqDate,$opcommitStartDate,$opCommitEndDate,$prio){
+                $OperationManager= new OperationManager;
+                $affectedLines =$OperationManager-> GetOpe($opName,$opStartDate,$opEndDate,$opReqDate,$opcommitStartDate,$opCommitEndDate,$prio);
+                if($affectedLines==false){
+                    throw new Exception("impossible d'envoyer les données");
+                }
             }
 
             public function jsonStat0($term0){

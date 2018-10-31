@@ -19,9 +19,6 @@ $('#client').autocomplete({
       });
   },
   minLenght:1,
-  select:function(event,ui){
-    
-      
-  }
+
   });
 });
