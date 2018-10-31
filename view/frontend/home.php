@@ -48,38 +48,38 @@
         <thead>
             <tr>
                 <form method="post">
-                    <td>
-                        <h3><input type="submit" name="Ok" value="Trier" >  </h3> 
+                    <th>
+                        <button  name="Ok" type="submit" class="btn btn-success">Trier</button> 
                     </th>    
                                         
-                    <th><h3><input type="radio" name="tri" value="1" id="1" />    </p> </h3>
-                    <th><h3><input type="radio" name="tri" value="2" id="2" />    </p> </h3> </th>
-                    <th><h3><input type="radio" name="tri" value="3" id="3" />    </p> </h3> </th>
-                    <th><h3><input type="radio" name="tri" value="4" id="4" />    </p> </h3> </th>
-                    <th><h3> <input type="radio" name="tri" value="5" id="5" />    </p></h3> </th>
-                    <th><h3> <input type="radio" name="tri" value="6" id="6" />    </p></h3> </th>
-                    <th><h3> <input type="radio" name="tri" value="7" id="7" />    </p></h3> </th>
-                    <th><h3> <input type="radio" name="tri" value="8" id="8" />    </p></h3> </th>
-                    <th><h3><input type="radio" name="tri" value="9" id="9" />    </p> </h3> </th>
-                    <th><h3><input type="radio" name="tri" value="10" id="10" />    </p> </h3> </th>
-                    <th><h3> <input type="radio" name="tri" value="11" id="11" />   </p></h3> </th>
-                    <th><h3><input type="radio" name="tri" value="12" id="12" />    </p> </h3> </th>
-                    <th><h3><input type="radio" name="tri" value="13" id="13" />    </p> </h3> </th>
-                    <th><h3><input type="radio" name="tri" value="14" id="14" />    </p> </h3> </th>
-                    <th><h3><input type="radio" name="tri" value="15" id="15" />    </p> </h3> </th>
-                    <th><h3><input type="radio" name="tri" value="16" id="16" />    </p> </h3> </th>
-                    <th><h3> <input type="radio" name="tri" value="17" id="17" />   </p></h3> </th>
-                    <th><h3><input type="radio" name="tri" value="18" id="18" />    </p> </h3> </th>
-                    <th><h3><input type="radio" name="tri" value="19" id="19" />   </p> </h3> </th>
-                    <th><h3><input type="radio" name="tri" value="20" id="20" />    </p> </h3> </th>
-                    <th><h3><input type="radio" name="tri" value="21" id="21" />    </p> </h3> </th>
-                    <th><h3><input type="radio" name="tri" value="22" id="22" />    </p> </h3> </th>
-                    <th><h3><input type="radio" name="tri" value="23" id="23" />    </p> </h3> </th>
-                    <th><h3><input type="radio" name="tri" value="24" id="24" />    </p> </h3> </th>
-                    <th><h3><input type="radio" name="tri" value="24" id="25" />    </p> </h3> </th>
-                    <th><h3><input type="radio" name="tri" value="24" id="26" />    </p> </h3> </th>
-                    <th><h3><input type="radio" name="tri" value="24" id="27" />    </p> </h3> </th>
-                    <th><h3><input type="radio" name="tri" value="24" id="28" />    </p> </h3> </th>
+                    <th><input   type="checkbox" name="tri" value="1" id="1" /></th>
+                    <th><input type="checkbox" name="tri" value="2" id="2" />   </> </th>
+                    <th><input type="checkbox" name="tri" value="3" id="3" />     </th>
+                    <th><input type="checkbox" name="tri" value="4" id="4" />      </th>
+                    <th> <input type="checkbox" name="tri" value="5" id="5" />     </th>
+                    <th> <input type="checkbox" name="tri" value="6" id="6" />     </th>
+                    <th> <input type="checkbox" name="tri" value="7" id="7" />     </th>
+                    <th> <input type="checkbox" name="tri" value="8" id="8" />     </th>
+                    <th><input type="checkbox" name="tri" value="9" id="9" />     </th>
+                    <th><input type="checkbox" name="tri" value="10" id="10" />     </th>
+                    <th> <input type="checkbox" name="tri" value="11" id="11" />    </th>
+                    <th><input type="checkbox" name="tri" value="12" id="12" />     </th>
+                    <th><input type="checkbox" name="tri" value="13" id="13" />      </th>
+                    <th><input type="checkbox" name="tri" value="14" id="14" />     </th>
+                    <th><input type="checkbox" name="tri" value="15" id="15" />      </th>
+                    <th><input type="checkbox" name="tri" value="16" id="16" />     </th>
+                    <th> <input type="checkbox" name="tri" value="17" id="17" />    </th>
+                    <th><input type="checkbox" name="tri" value="18" id="18" />     </th>
+                    <th><input type="checkbox" name="tri" value="19" id="19" />    </th>
+                    <th><input type="checkbox" name="tri" value="20" id="20" />     </th>
+                    <th><input type="checkbox" name="tri" value="21" id="21" />     </th>
+                    <th><input type="checkbox" name="tri" value="22" id="22" />     </th>
+                    <th><input type="checkbox" name="tri" value="23" id="23" />     </th>
+                    <th><input type="checkbox" name="tri" value="24" id="24" />     </th>
+                    <th><input type="checkbox" name="tri" value="24" id="25" />      </th>
+                    <th><input type="checkbox" name="tri" value="24" id="26" />     </th>
+                    <th><input type="checkbox" name="tri" value="24" id="27" />      </th>
+                    <th><input type="checkbox" name="tri" value="24" id="28" />     </th>
                 </form>
             <tr>
         </thead>
@@ -135,4 +135,4 @@
 
 <?php $content = ob_get_clean(); ?>
 
-<?php require('view/frontend/template.php'); ?>
+<?php require('view/frontend/template.php'); ?>S

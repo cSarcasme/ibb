@@ -1,5 +1,6 @@
 <?php 
 require_once("model/manager.php");
+
 class OperationManager extends Manager
 {
     
@@ -13,20 +14,23 @@ class OperationManager extends Manager
 			/* retrieve the search term that autocomplete sends */
 			//$a_json = array();
 			//$a_json_row = array();
-			$data = $db->query("SELECT * FROM warehouse as w WHERE  warehouse_name LIKE '%$term0%' ");
+			$data = $db->query("SELECT warehouse_name FROM warehouse as w WHERE  warehouse_name LIKE '%$term0%' ");
 			if(!empty($data)){
 				return $data;
 			}
 
 	}
 	
-	public function  warehouseId($mot){
+	public function  warehouseId($client){
 		$db=$this -> dbConnect();
+		$va=0;
+		$req =$db -> prepare("SELECT warehouse_id FROM warehouse WHERE warehouse_name  = ? ");
+		$req -> execute( array($client));
+		$result =$req -> fetch() ;
+		return array($result[0],$va);
 
-		$req =$db -> query("SELECT warehouse.warehouse_id FROM warehouse WHERE warehouse_name = ".$mot);
+			}
 
-	}
-  
 	public function search_stat1($term1)
 	{
 		
@@ -100,6 +104,18 @@ class OperationManager extends Manager
 		return $req;
 	}
 
+	
+	public function  ClientOp($opId,$clientId,$numb){
+		
+		$db=$this -> dbConnect();
+		$req =$db -> prepare("INSERT INTO   operation_client(
+		id_operation,
+		client_code,
+		number_stat) 
+		VALUES(?,?,?)");
+		$affectedLines=$req ->execute(array($opId,$clientId,$numb));
+		return $affectedLines;
+	}
 	public function  GetOpe($opName,$opStartDate,$opEndDate,$opReqDate,$opcommitStartDate,$opCommitEndDate,$prio){
 		$db=$this -> dbConnect();
 		$op_etat='non validé';
@@ -110,58 +126,16 @@ class OperationManager extends Manager
 		operation_end_date,
 		operation_available_request_date,
 		operation_commitment_start_date,
-		operation_commitment_end_date,prio,operation_creation_date,operation_modification_date) 
+		operation_commitment_end_date,
+		prio,
+		operation_creation_date,
+		operation_modification_date) 
 		VALUES(?,?,?,?,?,?,?,?,NOW(),NOW())");
 		$affectedLines=$req ->execute(array($opName,$op_etat,$opStartDate,$opEndDate,$opReqDate,$opcommitStartDate,$opCommitEndDate,$prio));
+		
+		
 		return $affectedLines;
 	}
-	public function  ClientOp($opId,$clientId,$numb){
-		
-		$db=$this -> dbConnect();
-		$req =$db -> prepare("INSERT INTO   operation_client(
-		id_operation,
-		client_code,
-		number_stat) 
-		VALUES(?,?,?)");
-		$clId=$req ->execute(array($opId,$clientId,$numb));
-		return $clId;
-	}
+
 }
-
-
-/*
-$req->execute(array($_POST['operation_name'],
-		$_POST['operation_month'],
-		$_POST['operation_start_date'],
-		$_POST['operation_end_date'],
-		$_POST['operation_available_request_date'],
-		$_POST['operation_commitment_start_date'],
-		$_POST['operation_commitment_end_date'],
-		$_POST['prio']));
-		$resultat = $req->fetch();
-		return $resultat;*/
-/*
-                {
-				while($row = mysql_fetch_array($data)) {
-
-				  // echo '<pre>'.print_r($row,true)."</pre>";
-
-				  if (!empty($row['warehouse_name']))
-				  {
-					$warehouse_name = isset($row['warehouse_name']) ? $row['warehouse_name'] : NULL;
-					$warehouse_id = isset($row['warehouse_id']) ? $row['warehouse_id'] : NULL;
-				  }
-					$warehouse_name = htmlentities(stripslashes($warehouse_name));
-					$warehouse_id = htmlentities(stripslashes($warehouse_id));
-					$a_json_row["id"] = $warehouse_id;
-					$a_json_row["value"] = $warehouse_name;
-					$a_json_row["label"] = $warehouse_name.''.$warehouse_id;
-					array_push($a_json, $a_json_row);
-
-				}
-			}
-			// jQuery wants JSON data
-			echo json_encode($a_json);
-			flush();
-			 
-			$mysqli->close();*/
+		

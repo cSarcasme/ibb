@@ -22,7 +22,7 @@
             <div class="col-10">
                 <h1 class="text-white">Créer une nouvellle opération</h1>
                 <?php
-                  if(isset($_POST['submit'])){
+                   if(isset($_POST['submit'])){
                     $opName=htmlspecialchars($_POST['operation_name']);
                     $opStartDate=htmlspecialchars($_POST['operation_start_date']);
                     $opEndDate=htmlspecialchars($_POST['operation_end_date']);
@@ -30,11 +30,16 @@
                     $opcommitStartDate=htmlspecialchars($_POST['operation_commitment_start_date']);
                     $opCommitEndDate=htmlspecialchars($_POST['operation_commitment_end_date']);
                     $prio=htmlspecialchars($_POST['prio']);
-                    
-                   
-                    //Client_Op($opId,$clientId,$numb);
+                    $client=htmlspecialchars($_POST['client']);
+            
                     Get_Op($opName,$opStartDate,$opEndDate,$opReqDate,$opcommitStartDate,$opCommitEndDate,$prio);
-                      
+                    Session_Op();
+                    
+                    $cli=Client_Id($client);
+                    $numb=$cli[1];
+                    $clientId=$cli[0];
+                    $opId=$_SESSION['opId'];
+                    Client_Op($opId,$clientId,$numb);  
                   }
                 ?>
                 <p class="text-white">Entrer les informations de l'opération</p>
@@ -123,7 +128,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-row mb-2">
+                    <!--<div class="form-row mb-2">
                         <div class="form-group col-1">
                             <p class="text-white">Prioritaire:</p>
                         </div>
@@ -143,12 +148,16 @@
                                 </label>
                             </div>
                         </div>
-                    </div>
+                    </div>-->
+                    <p class="text-white">  Prioritaire
+                        <input type="radio" class="text-white ml-2" name="prio" value="oui" id="oui" checked="checked" /> <label class="text-white" for="oui">Oui</label>
+                        <input type="radio" class="text-white ml-2" name="prio" value="non" id="non" /> <label class="text-white" for="non">Non</label>                  
+                     </p>
                     <div class="row">
                         <div class="col-3 text-center">
                             <button type=submit name=submit class=" btn btn-block btn-md btn-success">Valider</button>
                         </div>
-                    </div>  
+                    </div> 
                   </div>
                   </form>
             </div>            
