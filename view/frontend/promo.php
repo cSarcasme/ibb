@@ -1,6 +1,6 @@
 
 <!--page home-->
-<?php $title = "Menu"?>
+<?php $title = "promo"?>
 
 <?php ob_start();?>
 
@@ -8,14 +8,20 @@
     include('body/topbar.php')
 
 ?>
-
-
-   
-    <body>
+<body>
+<style type="text/css">
+    input {width:100px;}
+    td {border: solid 1px black;
+        
+        width :80px;
+        }
+    table {border-collapse: collapse;}
+</style>
         <table >
         <tr><th colspan="2"><h1>Suivie des opérations</h1></th></tr> 
         <tr>
         <td><h3> Nom de l'opération</h3></td>
+        <td><h3> Etat</h3> </td>
         <td><h3> Prio</h3> </td>
         <td><h3> Mois de création</h3> </td>
         <td><h3> Date de début</h3> </td>
@@ -30,143 +36,41 @@
         <td><h3> stat1</h3> </td>
         <td><h3> stat2</h3> </td>
         <td><h3> stat3</h3> </td>
-        
         <td><h3> Nom du client</h3> </td>
-        <tr>
-
-        <?php
-            $con =mysqli_connect ("localhost", "root","","ibb");
-            if (!$con){
-             echo " data base is failed";
-            }
-
-        $query=("SELECT * FROM operation as o, operation_client as p,warehouse as w,stat3 as s3, stat2 as s2,stat1 as s1,small_enseigne as se
-        WHERE p.client_code = w.warehouse_id   AND s3.stat2_id=s2.stat2_id AND s2.stat1_id=s1.stat1_id AND p.id_operation = o.id_operation  ORDER BY operation_name");
-        $result = mysqli_query($con,$query);
         
-        while($row=mysqli_fetch_array($result))
-            {  
-              if($row['number_stat']==0)
-              { 
-               
-              echo"<tr>";
-              echo"<td>".$row['operation_name']."</td>";
-              echo"<td>".$row['prio']."</td>";
-              echo"<td>".$row['operation_month']."</td>";
-              echo"<td>".$row['operation_start_date']."</td>";
-              echo"<td>".$row['operation_end_date']."</td>";
-              echo"<td>".$row['operation_available_request_date']."</td>";
-              echo"<td>".$row['operation_commitment_start_date']."</td>";
-              echo"<td>".$row['operation_commitment_end_date']."</td>";
-              echo"<td>".$row['operation_creation_date']."</td>";
-              echo"<td>".$row['operation_modification_date']."</td>";
-             
-              echo"<td>".$row['client_code']."</td>";
-              echo"<td>".$row['stat1_name']."</td>";
-              echo"<td>".$row['stat2_name']."</td>";
-              echo"<td>".$row['stat3_name']."</td>";
-              echo"<td>".$row['stat4_name']."</td>";
-              echo"<td>".$row['warehouse_name']."</td>";
-              echo"</tr>";
-              }
-              else {
-                      if($row['number_stat']==2)
-                      { 
-                       
-                      echo"<tr>";
-                      echo"<td>".$row['operation_name']."</td>";
-                      echo"<td>".$row['prio']."</td>";
-                      echo"<td>".$row['operation_month']."</td>";
-                      echo"<td>".$row['operation_start_date']."</td>";
-                      echo"<td>".$row['operation_end_date']."</td>";
-                      echo"<td>".$row['operation_available_request_date']."</td>";
-                      echo"<td>".$row['operation_commitment_start_date']."</td>";
-                      echo"<td>".$row['operation_commitment_end_date']."</td>";
-                      echo"<td>".$row['operation_creation_date']."</td>";
-                      echo"<td>".$row['operation_modification_date']."</td>";
-                      
-                      echo"<td>".$row['client_code']."</td>";
-                      echo"<td>".$row['stat1_name']."</td>";
-                      echo"<td>".$row['stat2_name']."</td>";
-                      echo"<td></td>";
-                      echo"<td></td>";
-                      echo"<td></td>";
-                      echo"</tr>";
-                              }
-                              else {
-                                if($row['number_stat']==1)
-                                { 
-                                 
-                                echo"<tr>";
-                                echo"<td>".$row['operation_name']."</td>";
-                                echo"<td>".$row['prio']."</td>";
-                                echo"<td>".$row['operation_month']."</td>";
-                                echo"<td>".$row['operation_start_date']."</td>";
-                                echo"<td>".$row['operation_end_date']."</td>";
-                                echo"<td>".$row['operation_available_request_date']."</td>";
-                                echo"<td>".$row['operation_commitment_start_date']."</td>";
-                                echo"<td>".$row['operation_commitment_end_date']."</td>";
-                                echo"<td>".$row['operation_creation_date']."</td>";
-                                echo"<td>".$row['operation_modification_date']."</td>";
-                                echo"<td>".$row['client_code']."</td>";
-                                echo"<td>".$row['stat1_name']."</td>";
-                                echo"<td></td>";
-                                echo"<td></td>";
-                                echo"<td></td>";
-                                echo"<td></td>";
-                                echo"</tr>";
-                                }
-                              else {
-                                          if($row['number_stat']==3)
-                                          { 
-                                            
-                                          echo"<tr>";
-                                          echo"<td>".$row['operation_name']."</td>";
-                                          echo"<td>".$row['prio']."</td>";
-                                          echo"<td>".$row['operation_month']."</td>";
-                                          echo"<td>".$row['operation_start_date']."</td>";
-                                          echo"<td>".$row['operation_end_date']."</td>";
-                                          echo"<td>".$row['operation_available_request_date']."</td>";
-                                          echo"<td>".$row['operation_commitment_start_date']."</td>";
-                                          echo"<td>".$row['operation_commitment_end_date']."</td>";
-                                          echo"<td>".$row['operation_creation_date']."</td>";
-                                          echo"<td>".$row['operation_modification_date']."</td>";
-                                          echo"<td>".$row['client_code']."</td>";
-                                          echo"<td>".$row['stat1_name']."</td>";
-                                          echo"<td>".$row['stat2_name']."</td>";
-                                          echo"<td>".$row['stat3_name']."</td>";
-                                          echo"<td></td>";
-                                          echo"<td></td>";
-                                          echo"</tr>";
-                                          }
-                                          else {
-                                            if($row['number_stat']==4)
-                                            { 
-                                              
-                                            echo"<tr>";
-                                            echo"<td>".$row['operation_name']."</td>";
-                                            echo"<td>".$row['prio']."</td>";
-                                            echo"<td>".$row['operation_month']."</td>";
-                                            echo"<td>".$row['operation_start_date']."</td>";
-                                            echo"<td>".$row['operation_end_date']."</td>";
-                                            echo"<td>".$row['operation_available_request_date']."</td>";
-                                            echo"<td>".$row['operation_commitment_start_date']."</td>";
-                                            echo"<td>".$row['operation_commitment_end_date']."</td>";
-                                            echo"<td>".$row['operation_creation_date']."</td>";
-                                            echo"<td>".$row['operation_modification_date']."</td>";
-                                            
-                                            echo"<td>".$row['client_code']."</td>";
-                                            echo"<td>".$row['stat1_name']."</td>";
-                                            echo"<td>".$row['stat2_name']."</td>";
-                                            echo"<td>".$row['stat3_name']."</td>";
-                                            echo"<td>".$row['stat4_name']."</td>";
-                                            echo"<td></td>";
-                                            echo"</tr>";
-                                            }
-                      }}
-                    }
-                  }}
-        ?>
+        <tr>
+     
+        <?php
+                  
+                  foreach ($req as $row){
+                    
+                  
+                    echo"<tr>";
+                    echo"<td>".$row['operation_name']."</td>";
+                    echo"<td>".$row['operation_etat']."</td>";
+                    echo"<td>".$row['prio']."</td>";
+                    echo"<td></td>";
+                    echo"<td>".$row['operation_start_date']."</td>";
+                    echo"<td>".$row['operation_end_date']."</td>";
+                    echo"<td>".$row['operation_available_request_date']."</td>";
+                    echo"<td>".$row['operation_commitment_start_date']."</td>";
+                    echo"<td>".$row['operation_commitment_end_date']."</td>";
+                    echo"<td>".$row['operation_creation_date']."</td>";
+                    echo"<td>".$row['operation_modification_date']."</td>";
+                    echo"<td></td>";
+                    echo"<td></td>";
+                    echo"<td></td>";
+                    echo"<td></td>";
+                    echo"<td></td>";
+                    echo"<td></td>";
+                    
+                    echo"</tr>";
+  
+  
+                  }
+                          
+                  ?>
+
         </table>
 
 
@@ -274,7 +178,7 @@
                    <p><label for="operation_pvc_managment">PVC management:</label><br>
                   <input type="text" name="operation_pvc_managment" /></p>
             <p><label for="operation_type">Type d'opération:</label><br>
-         <select name="operation_type">
+            <select name="operation_type">
           <option value=""></option>
           <option value=" Tract">Tract</option>
           <option value="Offre Compl">Offre Compl.</option>
@@ -290,7 +194,7 @@
           <p></p>       
           </p><p>
           </select></p>
-            <input type="submit" name="valider" value="valider" onclick="self.location.href='index.php?page=home'" style="background-color:##149414" style="color:white; font-weight:bold"onclick>  
+            <input type="submit" name="valider" value="valider" onclick="self.location.href='display_homepage.php'" style="background-color:##149414" style="color:white; font-weight:bold"onclick>  
             <br/><br />   
       </fieldset>
 
@@ -305,11 +209,7 @@
 </html>
 
 
-
-
-
-
-  <a href="index.php?page=home">Retourner à la page d'accueil </a>
-
+</body>
+       
 <?php $content = ob_get_clean(); ?>
 <?php require('view/frontend/template.php'); ?>

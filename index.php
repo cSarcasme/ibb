@@ -1,8 +1,10 @@
 <?php
+if(!isset($_SESSION)){
+    session_start();
+}
 
 
 require('controller/frontend.php');
-
 try{
 	
 	$pages = scandir('view/frontend/');

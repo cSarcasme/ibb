@@ -1,7 +1,15 @@
 <?php
 require_once('model/HomeManager.php');
 require_once('model/OperationManager.php');
+require_once('model/SessionManager.php');
+require_once('model/PromoManager.php');
 
+
+
+    function Session_Op(){
+        $SessionManager= new SessionManager;
+        $SessionManager-> OpSession();
+    }
 
     class PageHome{
         /* * page home view * */
@@ -30,7 +38,8 @@ require_once('model/OperationManager.php');
     class PagePromo{
         /* * page promo view * */
         public function promo(){
-            
+            $PromoManager= new PromoManager;
+            $req=$PromoManager->SecondBoard();
             
             
 
@@ -44,46 +53,53 @@ require_once('model/OperationManager.php');
         public function operation(){
             $OperationManager= new OperationManager;
             $recup1=$OperationManager-> petiteEnseigne();
+           
+            function Client_Id($client){
+                                
+                                $OperationManager= new OperationManager;
+                                $req=$OperationManager-> warehouseId($client);
 
+                                return $req;
+                                
+                                
+                            }  
             function Client_Op($opId,$clientId,$numb){
-                
+              
                 $OperationManager= new OperationManager;
                 $affectedLines=$OperationManager-> ClientOp($opId,$clientId,$numb);
                 if($affectedLines==false){
                     throw new Exception("impossible d'envoyer les données");
                 }
-     
-            } 
-
+         else {
+                    //header('Location: index.php?page=promo');
+                    }
+            }
             function Get_Op($opName,$opStartDate,$opEndDate,$opReqDate,$opcommitStartDate,$opCommitEndDate,$prio){
                 $OperationManager= new OperationManager;
                 $affectedLines =$OperationManager-> GetOpe($opName,$opStartDate,$opEndDate,$opReqDate,$opcommitStartDate,$opCommitEndDate,$prio);
                 if($affectedLines==false){
                     throw new Exception("impossible d'envoyer les données");
                 }
+               
             }
             
+           
 
                 require('view/frontend/operation.php');
             }
-            public function Get_Op($opName,$opStartDate,$opEndDate,$opReqDate,$opcommitStartDate,$opCommitEndDate,$prio){
-                $OperationManager= new OperationManager;
-                $affectedLines =$OperationManager-> GetOpe($opName,$opStartDate,$opEndDate,$opReqDate,$opcommitStartDate,$opCommitEndDate,$prio);
-                if($affectedLines==false){
-                    throw new Exception("impossible d'envoyer les données");
-                }
-            }
-
+                   
             public function jsonStat0($term0){
                 
                 $OperationManager= new OperationManager;
                 $recup=$OperationManager-> search_stat0($term0);
                 $array=[];
+                
                 while($data=$recup->fetch()){
                     array_push($array,$data['warehouse_name']);
                 }
             
                 echo json_encode($array);
+                
                 
             }
         
