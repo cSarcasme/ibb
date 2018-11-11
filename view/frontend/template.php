@@ -44,8 +44,9 @@
     <script src="public/js/AutocompleteStat1.js"></script>
     <script src="public/js/AutocompleteStat2.js"></script>
     <script src="public/js/AutocompleteStat3.js"></script>
-
-
+    <script src="public/js/AutocompleteEns.js"></script>
+    <script src="public/js/AutocompletePromo.js"></script>
+    
 
    
 

@@ -19,7 +19,9 @@ $('#stat2').autocomplete({
       });
   },
   minLenght:1,
-
-  
+  select:function(event,ui){
+    
+      
+  }
   });
 });

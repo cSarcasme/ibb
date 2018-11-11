@@ -3,6 +3,7 @@ require_once('model/HomeManager.php');
 require_once('model/OperationManager.php');
 require_once('model/SessionManager.php');
 require_once('model/PromoManager.php');
+require_once('model/ArticleManager.php');
 
 
 
@@ -40,13 +41,46 @@ require_once('model/PromoManager.php');
         public function promo(){
             $PromoManager= new PromoManager;
             $req=$PromoManager->SecondBoard();
+
+                function Get_Promo($opConso,$opPromoRed,$opPvc,$opType,$uvcPre,$opId,$prodId){
+                    $PromoManager= new PromoManager;
+                    $affected =$PromoManager-> GetPomo($opConso,$opPromoRed,$opPvc,$opType,$uvcPre,$opId,$prodId);
+                    if($affected==false){
+                        throw new Exception("impossible d'envoyer les données");
+                    }
+                    else {
+                        header('Location: index.php?page=article');
+                        }
+                }
+                function Product_Id($product){
             
+                    $PromoManager= new PromoManager;
+                    $req=$PromoManager-> productId($product);
+
+                    return $req;
+                    
+                    
+                }        
+        
             
 
             require('view/frontend/promo.php');
+            return $req;
         }
+        public function jsonPromo($promo){
+                        
+                        $PromoManager= new PromoManager;
+                        $recup=$PromoManager-> search_promo($promo);
+                        $array=[];
+                        
+                        while($data=$recup->fetch()){
+                            array_push($array,$data['product_name']);
+                        }
+                    
+                        echo json_encode($array);    
+        }
+     
 
-        
     }
     class PageOperation{
         /* * page menu view * */
@@ -63,6 +97,42 @@ require_once('model/PromoManager.php');
                                 
                                 
                             }  
+            function Stat1_Id($stat1){
+                
+                $OperationManager= new OperationManager;
+                $req=$OperationManager-> stat1Id($stat1);
+
+                return $req;
+                
+                
+            } 
+            function Stat2_Id($stat2){
+                
+                $OperationManager= new OperationManager;
+                $req=$OperationManager-> stat2Id($stat2);
+
+                return $req;
+                
+                
+            } 
+            function Stat3_Id($stat3){
+                
+                $OperationManager= new OperationManager;
+                $req=$OperationManager-> stat3Id($stat3);
+
+                return $req;
+                
+                
+            } 
+            function Enseigne_Id($enseigne2){
+                
+                $OperationManager= new OperationManager;
+                $req=$OperationManager-> enseigneId($enseigne2);
+
+                return $req;
+                
+                
+            } 
             function Client_Op($opId,$clientId,$numb){
               
                 $OperationManager= new OperationManager;
@@ -71,7 +141,7 @@ require_once('model/PromoManager.php');
                     throw new Exception("impossible d'envoyer les données");
                 }
          else {
-                    //header('Location: index.php?page=promo');
+                    header('Location: index.php?page=promo');
                     }
             }
             function Get_Op($opName,$opStartDate,$opEndDate,$opReqDate,$opcommitStartDate,$opCommitEndDate,$prio){
@@ -87,6 +157,8 @@ require_once('model/PromoManager.php');
 
                 require('view/frontend/operation.php');
             }
+        
+            
                    
             public function jsonStat0($term0){
                 
@@ -145,6 +217,20 @@ require_once('model/PromoManager.php');
             
         }
 
+        public function jsonEnseigne($term4){
+                        
+            $OperationManager= new OperationManager;
+            $recup=$OperationManager-> search_enseigne($term4);
+            $array=[];
+            while($data=$recup->fetch()){
+                array_push($array,$data['name']);
+            }
+
+            echo json_encode($array);
+            
+        }
+
+
 
     }
 
@@ -152,9 +238,10 @@ require_once('model/PromoManager.php');
     class PageArticle{
         /* * page article view * */
         public function article(){
-            
-            
-            
+            $ArticleManager= new ArticleManager;
+            $req=$ArticleManager->ThirdBoard();
+           
+           
 
             require('view/frontend/article.php');
         }
@@ -208,4 +295,12 @@ require_once('model/PromoManager.php');
         }
 
         
+    }
+    class VerifOpNameIfExist{
+        public function If_Exist($opName){
+            $OperationManager = new OperationManager;
+            $result = $OperationManager -> IfExist($opName);
+            
+            return $result;
+        }
     }

@@ -73,7 +73,18 @@ try{
 					$stat3 -> jsonStat3($_GET['term'] );
 				}
 			}
-			
+			elseif ($_GET['page'] == 'jsonsenseign') {
+				//if(isset($_GET['term'])){
+					$ens = new PageOperation;
+					$ens -> jsonEnseigne($_GET['term'] );
+				//}
+			}
+			elseif ($_GET['page'] == 'jsonpromo') {
+				if(isset($_GET['term'])){
+					$promo = new PagePromo;
+					$promo -> jsonPromo($_GET['term'] );
+				}
+			}			
 					
 				
 			

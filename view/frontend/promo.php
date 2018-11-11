@@ -8,18 +8,14 @@
     include('body/topbar.php')
 
 ?>
-<body>
-<style type="text/css">
-    input {width:100px;}
-    td {border: solid 1px black;
-        
-        width :80px;
-        }
-    table {border-collapse: collapse;}
-</style>
-        <table >
-        <tr><th colspan="2"><h1>Suivie des opérations</h1></th></tr> 
-        <tr>
+
+<section id="Acceuil">
+   
+    <h1 id>Plan promo</h1>
+    <table class="table table-bordered table-hover table-dark">
+        <thead>    
+            <tr class="text-center">
+         
         <td><h3> Nom de l'opération</h3></td>
         <td><h3> Etat</h3> </td>
         <td><h3> Prio</h3> </td>
@@ -32,24 +28,31 @@
         <td><h3> Date de création</h3> </td>
         <td><h3> Date de modification</h3> </td>
         <td><h3> Enseigne</h3> </td>
+        <td><h3> Sous enseigne</h3> </td>
         <td><h3> Code du client</h3> </td>
         <td><h3> stat1</h3> </td>
         <td><h3> stat2</h3> </td>
         <td><h3> stat3</h3> </td>
         <td><h3> Nom du client</h3> </td>
+        <td><h3> Direct</h3> </td>
         
         <tr>
-     
+     </thead>
+
         <?php
                   
                   foreach ($req as $row){
-                    
-                  
+                    $row[14]= isset($row[14]) ? $row[14] : NULL;
+                    $row[19]= isset($row[19]) ? $row[19] : NULL;
+                    $row[18]= isset($row[18]) ? $row[18] : NULL;
+                    $row[15]= isset($row[15]) ? $row[15] : NULL;
+                    $row[16]= isset($row[16]) ? $row[16] : NULL;
+                    $row[17]= isset($row[17]) ? $row[17] : NULL;
                     echo"<tr>";
                     echo"<td>".$row['operation_name']."</td>";
                     echo"<td>".$row['operation_etat']."</td>";
-                    echo"<td>".$row['prio']."</td>";
-                    echo"<td></td>";
+                    echo"<td>".$row['prio']."</td>"; 
+                    echo"<td>$row[1]</td>";
                     echo"<td>".$row['operation_start_date']."</td>";
                     echo"<td>".$row['operation_end_date']."</td>";
                     echo"<td>".$row['operation_available_request_date']."</td>";
@@ -57,12 +60,14 @@
                     echo"<td>".$row['operation_commitment_end_date']."</td>";
                     echo"<td>".$row['operation_creation_date']."</td>";
                     echo"<td>".$row['operation_modification_date']."</td>";
-                    echo"<td></td>";
-                    echo"<td></td>";
-                    echo"<td></td>";
-                    echo"<td></td>";
-                    echo"<td></td>";
-                    echo"<td></td>";
+                    echo"<td>$row[19]</td>";
+                    echo"<td>$row[18]</td>";
+                    echo"<td>$row[13]</td>";
+                    echo"<td>$row[14]</td>";
+                    echo"<td>$row[15]</td>";
+                    echo"<td>$row[16]</td>";
+                    echo"<td>$row[17]</td>";
+                    
                     
                     echo"</tr>";
   
@@ -76,14 +81,35 @@
 
 <fieldset>       
 
-          
+              <?php
+      if(isset($_POST['submit'])){
+        $opConso=htmlspecialchars($_POST['operation_conso_offer']);
+        $opPromoRed=htmlspecialchars($_POST['operation_promotionnal_reduction']);
+        $opPvc=htmlspecialchars($_POST['operation_pvc_managment']);
+        $opType=htmlspecialchars($_POST['operation_type']);
+        $uvcPre=htmlspecialchars($_POST['uvc_prevision']);
+        $product=htmlspecialchars($_POST['promo']);
+
+        
+        $prod_id=Product_Id($product); 
+        $prodId =$prod_id[0];
+        //echo '<pre>'.print_r($prod_id,true)."</pre>";
+        $opId=$_SESSION['opId'];
+        Get_Promo($opConso,$opPromoRed,$opPvc,$opType,$uvcPre,$opId,$prodId);
+         
+  
+      }
+    ?>
    
 
-            <form action="index.php" method="post">
-            <p><label for="operation_conso_offer">Offre conso :</label><br>
-            <select name="operation_conso_offer">
-                      
+            <form method="post">
+            
+            <div class="form-group col-2">
+                <input type="text" class="form-control" placeholder="Article" name="promo" id="promo"  />
+            </div>         
 
+                <p><label for="operation_conso_offer">Offre conso :</label><br>
+                            <select name="operation_conso_offer">
 
                   <option value=""></option> 
                   <option value="10% BRI">10% BRI</option>
@@ -177,6 +203,11 @@
 
                    <p><label for="operation_pvc_managment">PVC management:</label><br>
                   <input type="text" name="operation_pvc_managment" /></p>
+
+                <p><label for="uvc_prevision">Prevision UVC:</label><br>
+                  <input type="text" name="uvc_prevision" /></p>
+
+
             <p><label for="operation_type">Type d'opération:</label><br>
             <select name="operation_type">
           <option value=""></option>
@@ -194,8 +225,11 @@
           <p></p>       
           </p><p>
           </select></p>
-            <input type="submit" name="valider" value="valider" onclick="self.location.href='display_homepage.php'" style="background-color:##149414" style="color:white; font-weight:bold"onclick>  
-            <br/><br />   
+          <div class="row">
+                        <div class="col-3 text-center">
+                            <button type="submit" name=submit class=" btn btn-block btn-md btn-success">Valider</button>
+                        </div>
+                    </div>             <br/><br />   
       </fieldset>
 
 

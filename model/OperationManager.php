@@ -30,7 +30,40 @@ class OperationManager extends Manager
 		return array($result[0],$va);
 
 			}
+	public function  stat1Id($stat1){
+		$db=$this -> dbConnect();
+		$va=1;
+		$req =$db -> prepare("SELECT id FROM stat1 WHERE name = ?");
+		$req -> execute( array($stat1));
+		$result =$req -> fetch() ;
+		return array($result[0],$va);
+	}
+	public function  stat2Id($stat2){
+		$db=$this -> dbConnect();
+		$va=2;
+		$req =$db -> prepare("SELECT id FROM stat2 WHERE name = ?");
+		$req -> execute( array($stat2));
+		$result =$req -> fetch() ;
+		
 
+		return array($result[0],$va);
+	}
+	public function  stat3Id($stat3){
+		$db=$this -> dbConnect();
+		$va=3;
+		$req =$db -> prepare("SELECT stat3_id FROM stat3 WHERE stat3_name = ?");
+		$req -> execute( array($stat3));
+		$result =$req -> fetch() ;
+		return array($result[0],$va);
+	}
+	public function  enseigneId($enseigne2){
+		$db=$this -> dbConnect();
+		$va=4;
+		$req =$db -> prepare("SELECT id FROM small_enseigne WHERE name = ?");
+		$req -> execute( array($enseigne2));
+		$result =$req -> fetch() ;
+		return array($result[0],$va);
+	}
 	public function search_stat1($term1)
 	{
 		
@@ -46,12 +79,7 @@ class OperationManager extends Manager
 
 	}
 
-	public function  stat1Id($mot1){
-		$db=$this -> dbConnect();
 
-		$req =$db -> query("SELECT stat1.id FROM stat1 WHERE stat1.name = ".$mot1);
-
-	}
 	public function search_stat2($term2)
 	{
 			
@@ -67,12 +95,6 @@ class OperationManager extends Manager
 
 	}
 	
-	public function  stat2Id($mot2){
-		$db=$this -> dbConnect();
-
-		$req =$db -> query("SELECT stat2.id FROM stat2 WHERE stat2.name = ".$mot2);
-
-	}
 	
 	public function search_stat3($term3)
 	{
@@ -89,14 +111,21 @@ class OperationManager extends Manager
 
 	}
 
-	public function  stat3Id($mot3){
+	public function search_enseigne($term4)
+	{
+		
 		$db=$this -> dbConnect();
 
-		$req =$db -> query("SELECT stat3.stat3_id FROM stat3 WHERE stat3.stat3_name = ".$mot3);
+		/* retrieve the search term that autocomplete sends */
+		//$a_json = array();
+		//$a_json_row = array();
+		$data = $db->query("SELECT name FROM small_enseigne  WHERE small_enseigne.name  LIKE '%$term4%' ");
+		//if(!empty($data)){
+			return $data;
+		//}
 
 	}
-	
-	
+
 
 	public function  petiteEnseigne(){
 		$db=$this -> dbConnect();
@@ -136,6 +165,15 @@ class OperationManager extends Manager
 		
 		return $affectedLines;
 	}
+
+	public function IfExist($opName){
+        $db=$this->dbConnect();
+        $req = $db->prepare("SELECT operation_name FROM operation WHERE operation_name=?");
+        $req->execute(array($opName));
+        $data=$req->fetch();
+
+        return $data;
+    }
 
 }
 		

@@ -1,5 +1,4 @@
 $( document ).ready(function() {
-	$('.datepicker').datepicker({
-		uiLibrary: 'bootstrap4'
-	});
+	$('[data-toggle="popover"]').popover(); 
+
 });
